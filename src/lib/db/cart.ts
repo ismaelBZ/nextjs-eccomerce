@@ -3,9 +3,8 @@
 import { cookies } from "next/dist/client/components/headers";
 import { prisma } from "./prisma";
 import { Cart, CartItem, Prisma } from "@prisma/client";
-import  { getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import { authOptions } from "@/app/api/auth/[...nextauth]/route";
-import { Session } from "next-auth";
 
 export type CartItemWithProduct = Prisma.CartItemGetPayload<{
   include: { product: true };
@@ -15,14 +14,14 @@ export type CartWithProducts = Prisma.CartGetPayload<{
   include: { items: { include: { product: true } } };
 }>;
 
-export type ShoppingCart = Cart & {
+export type ShoppingCart = CartWithProducts  & {
   size: number;
   subtotal: number;
 };
 
 export async function getCart(): Promise<ShoppingCart | null> {
  
-  const session = (await getServerSession(authOptions)) as Session;
+  const session = (await getServerSession(authOptions));
   let cart: CartWithProducts | null = null;
   
   if (session) {
