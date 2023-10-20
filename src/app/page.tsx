@@ -12,7 +12,7 @@ interface HomeProps {
 export default async function Home( { searchParams: { page = "1" } }: HomeProps ) {
   
   const currentPage = parseInt(page);
-  const itemsPerPage = 5;
+  const itemsPerPage = 7;
   const totalItemCount = await prisma.product.count();
   const totalPages = Math.ceil(totalItemCount / itemsPerPage);
 
