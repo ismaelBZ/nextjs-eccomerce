@@ -5,8 +5,8 @@ import Image from "next/image";
 import profilePicPlaceholder from "@/assets/profile-pic-placeholder.png"
 import { signIn, signOut } from "next-auth/react";
 
-interface UserMenuButtonProps {
-  session: Session | null
+export interface UserMenuButtonProps {
+  session: Session | null;
 }
 
 export default function UserMenuButton ( {session}: UserMenuButtonProps ) {
